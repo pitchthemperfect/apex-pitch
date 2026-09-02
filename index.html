@@ -255,34 +255,27 @@
 
   <form id="matchForm" class="border border-hairline bg-panel p-6 md:p-10">
 
-    <!-- STEP 1 -->
-    <div class="step-panel active" data-step="1">
-      <h3 class="font-head uppercase text-2xl mb-6">Personal profile &amp; contact</h3>
-      <div class="space-y-5">
-        <div>
-          <label class="block text-sm text-fog mb-2">Full name</label>
-          <input type="text" name="fullName" required class="w-full bg-ink border border-hairline px-4 py-3 text-white placeholder-fog/40" placeholder="e.g. Sara Al Mansoori">
-        </div>
-        <div>
-          <label class="block text-sm text-fog mb-2">Instagram handle</label>
-          <input type="text" name="instagram" required class="w-full bg-ink border border-hairline px-4 py-3 text-white placeholder-fog/40" placeholder="@yourhandle">
-        </div>
-        <div class="grid sm:grid-cols-2 gap-5">
-          <div>
-            <label class="block text-sm text-fog mb-2">Your gender</label>
-            <select name="gender" class="w-full bg-ink border border-hairline px-4 py-3 text-white">
-              <option>Woman</option><option>Man</option><option>Non-binary</option><option>Prefer not to say</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm text-fog mb-2">Preferred partner gender</label>
-            <select name="preferredGender" class="w-full bg-ink border border-hairline px-4 py-3 text-white">
-              <option>Woman</option><option>Man</option><option>Any</option>
-            </select>
-          </div>
-        </div>
-      </div>
+<!-- STEP 1 -->
+<div class="step-panel active" data-step="1">
+  <h3 class="font-head uppercase text-2xl mb-6">Personal profile &amp; contact</h3>
+  <div class="space-y-5">
+    <div>
+      <label class="block text-sm text-fog mb-2">Full name</label>
+      <input type="text" name="fullName" required class="w-full bg-ink border border-hairline px-4 py-3 text-white placeholder-fog/40" placeholder="e.g. Sara Al Mansoori">
     </div>
+    <div>
+      <label class="block text-sm text-fog mb-2">Instagram handle</label>
+      <input type="text" name="instagram" required class="w-full bg-ink border border-hairline px-4 py-3 text-white placeholder-fog/40" placeholder="@yourhandle">
+    </div>
+    <div>
+      <label class="block text-sm text-fog mb-2">Your gender</label>
+      <select name="gender" class="w-full bg-ink border border-hairline px-4 py-3 text-white">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </div>
+  </div>
+</div>
 
     <!-- STEP 2 -->
     <div class="step-panel" data-step="2">
