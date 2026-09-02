@@ -260,16 +260,17 @@
   <h3 class="font-head uppercase text-2xl mb-6">Personal profile &amp; contact</h3>
   <div class="space-y-5">
     <div>
-      <label class="block text-sm text-fog mb-2">Full name</label>
+      <label class="block text-sm text-fog mb-2">Full name *</label>
       <input type="text" name="fullName" required class="w-full bg-ink border border-hairline px-4 py-3 text-white placeholder-fog/40" placeholder="e.g. Sara Al Mansoori">
     </div>
     <div>
-      <label class="block text-sm text-fog mb-2">Instagram handle</label>
+      <label class="block text-sm text-fog mb-2">Instagram handle *</label>
       <input type="text" name="instagram" required class="w-full bg-ink border border-hairline px-4 py-3 text-white placeholder-fog/40" placeholder="@yourhandle">
     </div>
     <div>
-      <label class="block text-sm text-fog mb-2">Your gender</label>
-      <select name="gender" class="w-full bg-ink border border-hairline px-4 py-3 text-white">
+      <label class="block text-sm text-fog mb-2">Your gender *</label>
+      <select name="gender" required class="w-full bg-ink border border-hairline px-4 py-3 text-white">
+        <option value="" disabled selected>Select gender</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
       </select>
@@ -277,127 +278,132 @@
   </div>
 </div>
 
-    <!-- STEP 2 -->
-    <div class="step-panel" data-step="2">
-      <h3 class="font-head uppercase text-2xl mb-6">Fitness &amp; logistics</h3>
+<!-- STEP 2 -->
+<div class="step-panel" data-step="2">
+  <h3 class="font-head uppercase text-2xl mb-6">Fitness &amp; logistics</h3>
 
-      <p class="text-sm text-fog mb-3">What's your current training level?</p>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-7">
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Beginner</span><input type="radio" name="trainingLevel" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Recreational</span><input type="radio" name="trainingLevel" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Competitive</span><input type="radio" name="trainingLevel" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Elite</span><input type="radio" name="trainingLevel" class="hidden"></label>
-      </div>
+  <p class="text-sm text-fog mb-3">What's your current training level? *</p>
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-7">
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Beginner</span><input type="radio" name="trainingLevel" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Recreational</span><input type="radio" name="trainingLevel" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Competitive</span><input type="radio" name="trainingLevel" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Elite</span><input type="radio" name="trainingLevel" required class="hidden"></label>
+  </div>
 
-      <p class="text-sm text-fog mb-3">What's your primary training style?</p>
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-7">
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">CrossFit / functional</span><input type="radio" name="trainingStyle" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Strength &amp; powerlifting</span><input type="radio" name="trainingStyle" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Endurance / running</span><input type="radio" name="trainingStyle" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Team sports</span><input type="radio" name="trainingStyle" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">General gym</span><input type="radio" name="trainingStyle" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Casual / inconsistent</span><input type="radio" name="trainingStyle" class="hidden"></label>
-      </div>
+  <p class="text-sm text-fog mb-3">What's your primary training style? *</p>
+  <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-7">
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">CrossFit / functional</span><input type="radio" name="trainingStyle" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Strength &amp; powerlifting</span><input type="radio" name="trainingStyle" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Endurance / running</span><input type="radio" name="trainingStyle" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Team sports</span><input type="radio" name="trainingStyle" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">General gym</span><input type="radio" name="trainingStyle" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Casual / inconsistent</span><input type="radio" name="trainingStyle" required class="hidden"></label>
+  </div>
 
-      <div>
-        <label class="block text-sm text-fog mb-2">Any injuries or movements we should program around?</label>
-        <textarea name="injuries" rows="3" class="w-full bg-ink border border-hairline px-4 py-3 text-white placeholder-fog/40" placeholder="Optional — let us know so we can pair you fairly."></textarea>
-      </div>
+  <div>
+    <label class="block text-sm text-fog mb-2">Any injuries or movements we should program around? *</label>
+    <textarea name="injuries" rows="3" required class="w-full bg-ink border border-hairline px-4 py-3 text-white placeholder-fog/40" placeholder="Let us know so we can pair you fairly (Write 'None' if applicable)."></textarea>
+  </div>
+</div>
+
+<!-- STEP 3 -->
+<div class="step-panel" data-step="3">
+  <h3 class="font-head uppercase text-2xl mb-6">The bridge &amp; compatibility</h3>
+
+  <p class="text-sm text-fog mb-3">When the heat gets tough, what's your instinct? *</p>
+  <div class="grid sm:grid-cols-2 gap-3 mb-7">
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Dig in and compete</span><input type="radio" name="instinct" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Encourage and steady the team</span><input type="radio" name="instinct" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Match my partner's energy</span><input type="radio" name="instinct" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Laugh it off, we're fine</span><input type="radio" name="instinct" required class="hidden"></label>
+  </div>
+
+  <p class="text-sm text-fog mb-3">What are you actually hoping to find here? *</p>
+  <div class="grid sm:grid-cols-3 gap-3 mb-7">
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Something real</span><input type="radio" name="lookingFor" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Something casual</span><input type="radio" name="lookingFor" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Honestly, just a great story</span><input type="radio" name="lookingFor" required class="hidden"></label>
+  </div>
+
+  <p class="text-sm text-fog mb-3">How do you tend to show someone you like them — and how do you want it shown back? *</p>
+  <div class="grid sm:grid-cols-2 gap-5 mb-7">
+    <div>
+      <p class="text-xs text-fog/70 uppercase tracking-wide mb-2">I give</p>
+      <select name="give" required class="w-full bg-ink border border-hairline px-4 py-3 text-white">
+        <option value="" disabled selected>Select an option</option>
+        <option>Words</option><option>Touch</option><option>Time</option><option>Acts</option><option>Gifts</option>
+      </select>
     </div>
-
-    <!-- STEP 3 -->
-    <div class="step-panel" data-step="3">
-      <h3 class="font-head uppercase text-2xl mb-6">The bridge &amp; compatibility</h3>
-
-      <p class="text-sm text-fog mb-3">When the heat gets tough, what's your instinct?</p>
-      <div class="grid sm:grid-cols-2 gap-3 mb-7">
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Dig in and compete</span><input type="radio" name="instinct" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Encourage and steady the team</span><input type="radio" name="instinct" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Match my partner's energy</span><input type="radio" name="instinct" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Laugh it off, we're fine</span><input type="radio" name="instinct" class="hidden"></label>
-      </div>
-
-      <p class="text-sm text-fog mb-3">What are you actually hoping to find here?</p>
-      <div class="grid sm:grid-cols-3 gap-3 mb-7">
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Something real</span><input type="radio" name="lookingFor" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Something casual</span><input type="radio" name="lookingFor" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Honestly, just a great story</span><input type="radio" name="lookingFor" class="hidden"></label>
-      </div>
-
-      <p class="text-sm text-fog mb-3">How do you tend to show someone you like them — and how do you want it shown back?</p>
-      <div class="grid sm:grid-cols-2 gap-5 mb-7">
-        <div>
-          <p class="text-xs text-fog/70 uppercase tracking-wide mb-2">I give</p>
-          <select name="give" class="w-full bg-ink border border-hairline px-4 py-3 text-white"><option>Words</option><option>Touch</option><option>Time</option><option>Acts</option><option>Gifts</option></select>
-        </div>
-        <div>
-          <p class="text-xs text-fog/70 uppercase tracking-wide mb-2">I want to receive</p>
-          <select name="receive" class="w-full bg-ink border border-hairline px-4 py-3 text-white"><option>Words</option><option>Touch</option><option>Time</option><option>Acts</option><option>Gifts</option></select>
-        </div>
-      </div>
-
-      <p class="text-sm text-fog mb-3">Which of these sounds most like you when you're falling for someone?</p>
-      <div class="grid sm:grid-cols-2 gap-3">
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">The anchor — steady, low-drama</span><input type="radio" name="fallingFor" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">The hype person — affectionate, all-in</span><input type="radio" name="fallingFor" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">The adventurer — pulls you into new things</span><input type="radio" name="fallingFor" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">The overthinker who cares deeply</span><input type="radio" name="fallingFor" class="hidden"></label>
-      </div>
+    <div>
+      <p class="text-xs text-fog/70 uppercase tracking-wide mb-2">I want to receive</p>
+      <select name="receive" required class="w-full bg-ink border border-hairline px-4 py-3 text-white">
+        <option value="" disabled selected>Select an option</option>
+        <option>Words</option><option>Touch</option><option>Time</option><option>Acts</option><option>Gifts</option>
+      </select>
     </div>
+  </div>
 
-    <!-- STEP 4 -->
-    <div class="step-panel" data-step="4">
-      <h3 class="font-head uppercase text-2xl mb-6">Mindset &amp; chemistry</h3>
+  <p class="text-sm text-fog mb-3">Which of these sounds most like you when you're falling for someone? *</p>
+  <div class="grid sm:grid-cols-2 gap-3">
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">The anchor — steady, low-drama</span><input type="radio" name="fallingFor" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">The hype person — affectionate, all-in</span><input type="radio" name="fallingFor" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">The adventurer — pulls you into new things</span><input type="radio" name="fallingFor" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">The overthinker who cares deeply</span><input type="radio" name="fallingFor" required class="hidden"></label>
+  </div>
+</div>
 
-      <p class="text-sm text-fog mb-3">When something goes sideways, what do you actually need from someone?</p>
-      <div class="grid sm:grid-cols-2 gap-3 mb-7">
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Space to sort it out alone</span><input type="radio" name="sideways" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">A pep talk</span><input type="radio" name="sideways" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">To laugh it off together</span><input type="radio" name="sideways" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Someone to take charge</span><input type="radio" name="sideways" class="hidden"></label>
-      </div>
+<!-- STEP 4 -->
+<div class="step-panel" data-step="4">
+  <h3 class="font-head uppercase text-2xl mb-6">Mindset &amp; chemistry</h3>
 
-      <p class="text-sm text-fog mb-3">What's your humor like?</p>
-      <div class="grid sm:grid-cols-2 gap-3 mb-7">
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Dry &amp; sarcastic</span><input type="radio" name="humor" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Goofy &amp; a little unhinged</span><input type="radio" name="humor" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Witty banter</span><input type="radio" name="humor" class="hidden"></label>
-        <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Wholesome &amp; corny</span><input type="radio" name="humor" class="hidden"></label>
-      </div>
+  <p class="text-sm text-fog mb-3">When something goes sideways, what do you actually need from someone? *</p>
+  <div class="grid sm:grid-cols-2 gap-3 mb-7">
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Space to sort it out alone</span><input type="radio" name="sideways" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">A pep talk</span><input type="radio" name="sideways" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">To laugh it off together</span><input type="radio" name="sideways" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Someone to take charge</span><input type="radio" name="sideways" required class="hidden"></label>
+  </div>
 
-      <div class="grid sm:grid-cols-2 gap-5">
-        <div>
-          <label class="block text-sm text-fog mb-2">One thing you won't compromise on in a partner</label>
-          <input type="text" name="noCompromise" class="w-full bg-ink border border-hairline px-4 py-3 text-white placeholder-fog/40" placeholder="Short answer">
-        </div>
-        <div>
-          <label class="block text-sm text-fog mb-2">Bonus: one word your friends would use for you</label>
-          <input type="text" name="friendsWord" class="w-full bg-ink border border-hairline px-4 py-3 text-white placeholder-fog/40" placeholder="One word">
-        </div>
-      </div>
+  <p class="text-sm text-fog mb-3">What's your humor like? *</p>
+  <div class="grid sm:grid-cols-2 gap-3 mb-7">
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Dry &amp; sarcastic</span><input type="radio" name="humor" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Goofy &amp; a little unhinged</span><input type="radio" name="humor" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Witty banter</span><input type="radio" name="humor" required class="hidden"></label>
+    <label class="tile cursor-pointer border border-hairline p-4 flex items-center gap-2"><span class="tile-dot w-3.5 h-3.5 rounded-full border border-hairline shrink-0"></span><span class="text-sm">Wholesome &amp; corny</span><input type="radio" name="humor" required class="hidden"></label>
+  </div>
+
+  <div class="grid sm:grid-cols-2 gap-5">
+    <div>
+      <label class="block text-sm text-fog mb-2">One thing you won't compromise on in a partner *</label>
+      <input type="text" name="noCompromise" required class="w-full bg-ink border border-hairline px-4 py-3 text-white placeholder-fog/40" placeholder="Short answer">
     </div>
-
-    <!-- STEP 5 -->
-    <div class="step-panel" data-step="5">
-      <h3 class="font-head uppercase text-2xl mb-6">Terms, policy &amp; confirmation</h3>
-      <div class="border border-hairline bg-ink p-6 mb-6">
-        <p class="text-fog leading-relaxed">One entry covers one person and is paired automatically once payment confirms. Matching is handled by Pitch Them Perfect based on your answers — pairings are blind, with no advance approval, swaps, or refunds based on match.</p>
-        <button type="button" id="openTerms" class="mt-4 text-mint text-sm underline underline-offset-4">Read full terms &amp; cancellation policy</button>
-      </div>
-
-      <label class="flex items-start gap-3 mb-8 cursor-pointer">
-        <input type="checkbox" id="agreeTerms" class="mt-1 w-4 h-4 accent-mint">
-        <span class="text-sm text-fog">I'm 18+, I've read the entry terms, matching process, conduct policy, fitness disclosure, photography notice, and cancellation policy, and I agree to all of them.</span>
-      </label>
-
-      <div class="border border-hairline p-6 flex items-center justify-between">
-        <div>
-          <p class="text-xs uppercase tracking-wide text-fog/70">Entry</p>
-          <p class="font-head text-2xl">Blind Date Doubles Pass</p>
-        </div>
-        <button type="submit" class="bg-redbright hover:bg-red text-white font-head uppercase tracking-wide px-7 py-3.5 transition-colors">Confirm &amp; Pay</button>
-      </div>
+    <div>
+      <label class="block text-sm text-fog mb-2">Bonus: one word your friends would use for you *</label>
+      <input type="text" name="friendsWord" required class="w-full bg-ink border border-hairline px-4 py-3 text-white placeholder-fog/40" placeholder="One word">
     </div>
+  </div>
+</div>
+
+<!-- STEP 5 -->
+<div class="step-panel" data-step="5">
+  <h3 class="font-head uppercase text-2xl mb-6">Terms, policy &amp; confirmation</h3>
+  <div class="border border-hairline bg-ink p-6 mb-6">
+    <p class="text-fog leading-relaxed">One entry covers one person and is paired automatically once payment confirms. Matching is handled by Pitch Them Perfect based on your answers — pairings are blind, with no advance approval, swaps, or refunds based on match.</p>
+    <button type="button" id="openTerms" class="mt-4 text-mint text-sm underline underline-offset-4">Read full terms &amp; cancellation policy</button>
+  </div>
+
+  <label class="flex items-start gap-3 mb-8 cursor-pointer">
+    <input type="checkbox" id="agreeTerms" required class="mt-1 w-4 h-4 accent-mint">
+    <span class="text-sm text-fog">I'm 18+, I've read the entry terms, matching process, conduct policy, fitness disclosure, photography notice, and cancellation policy, and I agree to all of them. *</span>
+  </label>
+
+  <div class="border border-hairline p-6 flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+    <div>
+      <p class="text-xs uppercase tracking-wide text-fog/70">Entry</p>
+      <p class="font-head text-2xl">Blind Date Doubles Pass: AED 300</p>
+    </div>
+    <a href="https://pay.ziina.com/dvlp/164EX81Km?source=app" target="_blank" class="bg-redbright hover:bg-red text-white font-head uppercase tracking-wide px-7 py-3.5 transition-colors text-center">Confirm &amp; Pay</a>
+  </div>
 
     <!-- Nav buttons -->
     <div class="flex items-center justify-between mt-10 pt-6 border-t border-hairline">
