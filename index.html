@@ -446,7 +446,8 @@
 </footer>
 
 <script>
-  const APPS_SCRIPT_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+  // Deployed Google Apps Script Web App URL
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwQyKz_M2WFTimosa29zjquyGGiBjDdxMDo84W-XMDKRfnSWcUWkz8aegjOhi-s5XydRw/exec";
 
   const steps = Array.from(document.querySelectorAll('.step-panel'));
   const totalSteps = steps.length;
@@ -467,6 +468,7 @@
     5: 'Terms & confirmation'
   };
 
+  // Validates required inputs in the active panel before allowing the user to proceed
   function isStepValid(step) {
     const currentPanel = document.querySelector(`.step-panel[data-step="${step}"]`);
     const requiredInputs = currentPanel.querySelectorAll('[required]');
@@ -513,7 +515,7 @@
     }
   });
 
-  // Selectable tiles
+  // Selectable tiles handling
   document.querySelectorAll('.tile').forEach(tile => {
     tile.addEventListener('click', () => {
       const input = tile.querySelector('input');
@@ -526,7 +528,7 @@
     });
   });
 
-  // Terms modal
+  // Terms modal handlers
   const termsModal = document.getElementById('termsModal');
   document.getElementById('openTerms').addEventListener('click', () => termsModal.classList.add('open'));
   document.getElementById('closeTerms').addEventListener('click', () => termsModal.classList.remove('open'));
@@ -539,39 +541,31 @@
     return label ? label.textContent.trim() : '';
   }
 
+  // Convert uploaded proof file to base64 string for transmission
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      if (!file) return resolve(null);
+      const reader = new FileReader();
+      reader.onload = () => resolve({
+        base64: reader.result.split(',')[1],
+        name: file.name,
+        type: file.type
+      });
+      reader.onerror = error => reject(error);
+      reader.readAsDataURL(file);
+    });
+  }
+
   form.addEventListener('submit', async e => {
     e.preventDefault();
     const agree = document.getElementById('agreeTerms');
     if (!agree.checked) {
       agree.closest('label').classList.add('text-redbright');
       alert('Please confirm you agree to the terms before continuing.');
-      current = 5; render();
+      current = 5; 
+      render();
       return;
     }
-
-    if (APPS_SCRIPT_URL.includes('PASTE_YOUR')) {
-      alert('Form backend isn\'t connected yet — see AppsScript-Code.gs for setup.');
-      return;
-    }
-
-    const payload = {
-      fullName: form.fullName.value,
-      instagram: form.instagram.value,
-      gender: form.gender.value,
-      trainingLevel: getRadioValue('trainingLevel'),
-      trainingStyle: getRadioValue('trainingStyle'),
-      injuries: form.injuries.value,
-      instinct: getRadioValue('instinct'),
-      lookingFor: getRadioValue('lookingFor'),
-      give: form.give.value,
-      receive: form.receive.value,
-      fallingFor: getRadioValue('fallingFor'),
-      sideways: getRadioValue('sideways'),
-      humor: getRadioValue('humor'),
-      noCompromise: form.noCompromise.value,
-      friendsWord: form.friendsWord.value,
-      agreedToTerms: agree.checked
-    };
 
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalLabel = submitBtn.textContent;
@@ -579,12 +573,39 @@
     submitBtn.textContent = 'Submitting…';
 
     try {
+      const paymentProofInput = form.paymentProof;
+      let fileData = null;
+      if (paymentProofInput && paymentProofInput.files.length > 0) {
+        fileData = await fileToBase64(paymentProofInput.files[0]);
+      }
+
+      const payload = {
+        fullName: form.fullName.value,
+        instagram: form.instagram.value,
+        gender: form.gender.value,
+        trainingLevel: getRadioValue('trainingLevel'),
+        trainingStyle: getRadioValue('trainingStyle'),
+        injuries: form.injuries.value,
+        instinct: getRadioValue('instinct'),
+        lookingFor: getRadioValue('lookingFor'),
+        give: form.give.value,
+        receive: form.receive.value,
+        fallingFor: getRadioValue('fallingFor'),
+        sideways: getRadioValue('sideways'),
+        humor: getRadioValue('humor'),
+        noCompromise: form.noCompromise.value,
+        friendsWord: form.friendsWord.value,
+        agreedToTerms: agree.checked,
+        paymentProof: fileData
+      };
+
       await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload)
       });
+
       submitBtn.textContent = 'You\'re in the heat! ✓';
       form.querySelector('[data-step="5"]').insertAdjacentHTML('beforeend',
         '<p class="text-mint text-sm mt-4">Entry received — confirmation details follow by DM.</p>');
@@ -597,5 +618,29 @@
 
   render();
 </script>
-</body>
-</html>
+
+<!-- ============ TERMS MODAL ============ -->
+<div id="termsModal" class="modal-backdrop fixed inset-0 z-50 bg-black/80 items-center justify-center p-5">
+  <div class="bg-panel border border-hairline max-w-lg w-full max-h-[80vh] overflow-y-auto p-8">
+    <div class="flex items-center justify-between mb-6">
+      <h4 class="font-head uppercase text-xl">Terms &amp; cancellation policy</h4>
+      <button id="closeTerms" class="text-fog hover:text-white text-2xl leading-none" aria-label="Close">&times;</button>
+    </div>
+    <div class="space-y-5 text-sm text-fog leading-relaxed">
+      <div><p class="text-white font-medium mb-1">1. Entry terms</p><p>18+ only. One entry covers one person and is paired automatically. Non-transferable. Confirmed upon payment.</p></div>
+      <div><p class="text-white font-medium mb-1">2. How matching works</p><p>Pitch Them Perfect selects matches via your questionnaire responses. Pairing is blind — no advance approval, swaps, or refunds based on match. No romantic outcome is guaranteed.</p></div>
+      <div><p class="text-white font-medium mb-1">3. Participant conduct</p><p>Respect is required. Zero tolerance for harassment, resulting in immediate removal with no refund. Privacy and consent rules apply throughout.</p></div>
+      <div><p class="text-white font-medium mb-1">4. Fitness &amp; readiness</p><p>This is a strenuous event. Participants confirm their own fitness and health readiness, and should advise the event team of any health issues before the race.</p></div>
+      <div><p class="text-white font-medium mb-1">5. Photography &amp; filming</p><p>Event coverage may be used for future marketing. Opt-out is available on request.</p></div>
+      <div><p class="text-white font-medium mb-1">6. Cancellation policy</p><p>No refunds within 24 hours of the race. 50% refund for earlier cancellation. 100% refund if organizers cancel the event. Cancel by DM to @pitchthemperfect.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-hairline">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 py-14 flex flex-col md:flex-row items-center justify-between gap-6">
+    <p class="font-head uppercase text-lg">Find true love at Apex <span class="text-redbright">&#9825;</span></p>
+    <p class="text-fog text-sm">DM <span class="text-redbright">@pitchthemperfect</span> &middot; Sharjah &middot; Sunday 13 September</p>
+  </div>
+</footer>
