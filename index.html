@@ -256,7 +256,6 @@
   <form id="matchForm" class="border border-hairline bg-panel p-6 md:p-10">
 
 <form id="multiStepForm">
-  <!-- STEP 1 -->
   <div class="step-panel active" data-step="1">
     <h3 class="font-head uppercase text-2xl mb-6">Personal profile &amp; contact</h3>
     <div class="space-y-5">
@@ -279,7 +278,6 @@
     </div>
   </div>
 
-  <!-- STEP 2 -->
   <div class="step-panel hidden" data-step="2">
     <h3 class="font-head uppercase text-2xl mb-6">Fitness &amp; logistics</h3>
 
@@ -307,7 +305,6 @@
     </div>
   </div>
 
-  <!-- STEP 3 -->
   <div class="step-panel hidden" data-step="3">
     <h3 class="font-head uppercase text-2xl mb-6">The bridge &amp; compatibility</h3>
 
@@ -353,7 +350,6 @@
     </div>
   </div>
 
-  <!-- STEP 4 -->
   <div class="step-panel hidden" data-step="4">
     <h3 class="font-head uppercase text-2xl mb-6">Mindset &amp; chemistry</h3>
 
@@ -385,7 +381,6 @@
     </div>
   </div>
 
-  <!-- STEP 5 -->
   <div class="step-panel hidden" data-step="5">
     <h3 class="font-head uppercase text-2xl mb-6">Terms, policy &amp; confirmation</h3>
     <div class="border border-hairline bg-ink p-6 mb-6">
@@ -412,6 +407,87 @@
       <button type="submit" class="w-full bg-mint hover:bg-mint/80 text-black font-head uppercase tracking-wide px-7 py-3.5 transition-colors">Submit Registration</button>
     </div>
   </div>
+
+  <div class="pt-8 flex items-center justify-between border-t border-hairline mt-8">
+    <button type="button" id="backBtn" class="text-fog text-sm hover:text-white uppercase tracking-wider flex items-center gap-1 opacity-0 pointer-events-none transition-opacity">
+      &larr; Back
+    </button>
+    <button type="button" id="continueBtn" class="bg-mint hover:bg-mint/90 text-black font-head uppercase tracking-wider px-8 py-3.5 text-sm font-semibold transition-colors flex items-center gap-2">
+      Continue &rarr;
+    </button>
+  </div>
+</form>
+
+<script>
+  let currentStep = 1;
+  const totalSteps = 5;
+
+  const continueBtn = document.getElementById('continueBtn');
+  const backBtn = document.getElementById('backBtn');
+
+  function isStepValid(step) {
+    const currentPanel = document.querySelector(`.step-panel[data-step="${step}"]`);
+    const requiredInputs = currentPanel.querySelectorAll('[required]');
+    
+    for (let input of requiredInputs) {
+      if (input.type === 'radio') {
+        const radioGroup = currentPanel.querySelectorAll(`input[name="${input.name}"]`);
+        const checked = Array.from(radioGroup).some(r => r.checked);
+        if (!checked) {
+          alert('Please select an option to proceed.');
+          return false;
+        }
+      } else if (!input.checkValidity()) {
+        input.reportValidity();
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function updateStepVisibility() {
+    document.querySelectorAll('.step-panel').forEach(panel => {
+      const stepNum = parseInt(panel.getAttribute('data-step'));
+      if (stepNum === currentStep) {
+        panel.classList.remove('hidden');
+        panel.classList.add('active');
+      } else {
+        panel.classList.add('hidden');
+        panel.classList.remove('active');
+      }
+    });
+
+    // Handle Back button state
+    if (currentStep === 1) {
+      backBtn.classList.add('opacity-0', 'pointer-events-none');
+    } else {
+      backBtn.classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    // Hide Continue button on final step since it ends with Submit
+    if (currentStep === totalSteps) {
+      continueBtn.classList.add('hidden');
+    } else {
+      continueBtn.classList.remove('hidden');
+    }
+  }
+
+  continueBtn.addEventListener('click', () => {
+    if (isStepValid(currentStep)) {
+      if (currentStep < totalSteps) {
+        currentStep++;
+        updateStepVisibility();
+      }
+    }
+  });
+
+  backBtn.addEventListener('click', () => {
+    if (currentStep > 1) {
+      currentStep--;
+      updateStepVisibility();
+    }
+  });
+</script>
 
   <!-- NAVIGATION BUTTONS -->
   <div class="flex justify-between mt-8">
