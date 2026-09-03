@@ -462,7 +462,7 @@
 </footer>
 
 <script>
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw1CAQ9BZZQjWMZwyP_fEe-bPe15sdW0_Or_MyVlLzmGYI2vu8aQtscC8NO-FML95ZaSQ/exec";
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxe30t4hDsx87yilkh766NbgU1V39YAG6XWv-uMlYzxScKfbT_wQSillXpoAzGIjnB4ag/exec";
 
   const steps = Array.from(document.querySelectorAll('.step-panel'));
   const totalSteps = steps.length;
@@ -597,84 +597,82 @@
     });
   }
 
-form.addEventListener('submit', async e => {
-  e.preventDefault();
-  const agree = document.getElementById('agreeTerms');
-  if (!agree.checked) {
-    agree.closest('label').classList.add('text-redbright');
-    alert('Please confirm you agree to the terms before continuing.');
-    current = 5; 
-    render();
-    return;
-  }
-
-  const submitBtn = form.querySelector('button[type="submit"]');
-  const originalLabel = submitBtn.textContent;
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Submitting…';
-
-  try {
-    // Process Payment Proof File
-    const paymentProofInput = form.paymentProof;
-    let paymentFileData = null;
-    if (paymentProofInput && paymentProofInput.files.length > 0) {
-      paymentFileData = await fileToBase64(paymentProofInput.files[0]);
-    }
-
-    // Process Profile Photo File
-    const profilePhotoInput = form.profilePhoto;
-    let profilePhotoData = null;
-    if (profilePhotoInput && profilePhotoInput.files.length > 0) {
-      profilePhotoData = await fileToBase64(profilePhotoInput.files[0]);
-    }
-
-    const payload = {
-      fullName: form.fullName.value,
-      instagram: form.instagram.value,
-      gender: form.gender.value,
-      trainingLevel: getRadioValue('trainingLevel'),
-      trainingStyle: getRadioValue('trainingStyle'),
-      injuries: form.injuries.value,
-      instinct: getRadioValue('instinct'),
-      lookingFor: getRadioValue('lookingFor'),
-      give: form.give.value,
-      receive: form.receive.value,
-      fallingFor: getRadioValue('fallingFor'),
-      sideways: getRadioValue('sideways'),
-      humor: getRadioValue('humor'),
-      noCompromise: form.noCompromise.value,
-      friendsWord: form.friendsWord.value,
-      profilePhoto: profilePhotoData, // Added Profile Photo
-      agreedToTerms: agree.checked,
-      paymentProof: paymentFileData
-    };
-
-    const response = await fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(payload)
-    });
-
-    const result = await response.json();
-
-    if (result.status === 'error') {
-      alert(result.message);
-      submitBtn.disabled = false;
-      submitBtn.textContent = originalLabel;
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const agree = document.getElementById('agreeTerms');
+    if (!agree.checked) {
+      agree.closest('label').classList.add('text-redbright');
+      alert('Please confirm you agree to the terms before continuing.');
+      current = 5; 
+      render();
       return;
     }
 
-    submitBtn.textContent = 'You\'re in the heat! ✓';
-    form.querySelector('[data-step="5"]').insertAdjacentHTML('beforeend',
-      '<p class="text-mint text-sm mt-4">Entry received — details will be sent through email.</p>');
-  } catch (err) {
-    submitBtn.disabled = false;
-    submitBtn.textContent = originalLabel;
-    alert('Something went wrong sending your entry. Please try again or DM @pitchthemperfect directly.');
-  }
-});
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalLabel = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting…';
+
+    try {
+      // Safe selection of Profile Photo input
+      const profilePhotoInput = form.querySelector('input[name="profilePhoto"]');
+      let profilePhotoData = null;
+      if (profilePhotoInput && profilePhotoInput.files.length > 0) {
+        profilePhotoData = await fileToBase64(profilePhotoInput.files[0]);
+      }
+
+      // Safe selection of Payment Proof input
+      const paymentProofInput = form.querySelector('input[name="paymentProof"]');
+      let paymentFileData = null;
+      if (paymentProofInput && paymentProofInput.files.length > 0) {
+        paymentFileData = await fileToBase64(paymentProofInput.files[0]);
+      }
+
+      const payload = {
+        fullName: form.fullName.value,
+        instagram: form.instagram.value,
+        gender: form.gender.value,
+        trainingLevel: getRadioValue('trainingLevel'),
+        trainingStyle: getRadioValue('trainingStyle'),
+        injuries: form.injuries.value,
+        instinct: getRadioValue('instinct'),
+        lookingFor: getRadioValue('lookingFor'),
+        give: form.give.value,
+        receive: form.receive.value,
+        fallingFor: getRadioValue('fallingFor'),
+        sideways: getRadioValue('sideways'),
+        humor: getRadioValue('humor'),
+        noCompromise: form.noCompromise.value,
+        friendsWord: form.friendsWord.value,
+        profilePhoto: profilePhotoData,
+        agreedToTerms: agree.checked,
+        paymentProof: paymentFileData
+      };
+
+      const response = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+
+      if (result.status === 'error') {
+        alert(result.message);
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+        return;
+      }
+
+      submitBtn.textContent = 'You\'re in the heat! ✓';
+      form.querySelector('[data-step="5"]').insertAdjacentHTML('beforeend',
+        '<p class="text-mint text-sm mt-4">Entry received — details will be sent through email.</p>');
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+      alert('Something went wrong sending your entry. Please try again or DM @pitchthemperfect directly.');
+    }
+  });
 
   render();
 </script>
-</body>
-</html>
